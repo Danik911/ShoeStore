@@ -17,4 +17,8 @@
     <string name="create_account">Create account</string>
     <string name="welcome_text_view">Welcome</string>
     <string name="click_the_button_to_continue">Click the button to continue</string>
+    <string name="about_text">This is a virtual shoe store where you can add, edit or delete certain models of shoes</string>
+    <string name="continue_text">Push the button and check the existing list of shoes</string>
+    <string name="shoe_list">Shoe List</string>
+    <string name="shoe_description">Comfortable snickers which protect your feet and provide perfect grip on any surface</string>
 </resources>

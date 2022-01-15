@@ -1,4 +1,4 @@
-package com.udacity.shoestore.login_screen
+package com.udacity.shoestore.ui.login_screen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentLoginBinding
-import com.udacity.shoestore.databinding.FragmentLoginBindingImpl
 
 
 class LoginFragment : Fragment() {
@@ -27,6 +27,16 @@ class LoginFragment : Fragment() {
             container,
             false
         )
+
+        binding.btnCreateAccount.setOnClickListener {
+            findNavController()
+                .navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
+
+        }
+        binding.btnLogin.setOnClickListener {
+            findNavController()
+                .navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
+        }
         return binding.root
     }
 

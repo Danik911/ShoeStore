@@ -1,21 +1,25 @@
 package com.udacity.shoestore.ui.detail_sceen
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentDetailBinding
+import com.udacity.shoestore.databinding.FragmentListBinding
+import com.udacity.shoestore.ui.ActivityViewModel
+import com.udacity.shoestore.ui.listing_screen.ListFragment
 
 
-class DetailFragment : Fragment() {
+class DetailFragment : androidx.fragment.app.Fragment() {
 
-    private lateinit var viewModel: DetailViewModel
+    private val viewModel: ActivityViewModel by activityViewModels()
     private lateinit var binding: FragmentDetailBinding
+    lateinit var shoeItem: LinearLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,10 +32,10 @@ class DetailFragment : Fragment() {
             false
         )
         //Get the viewModel
-        viewModel = ViewModelProvider(this)[DetailViewModel::class.java]
+
 
         //Set bound viewModel and layout via dataBinding
-        binding.detailViewModel =viewModel
+        binding.activityViewModel =viewModel
         binding.lifecycleOwner = this
 
 
@@ -39,11 +43,28 @@ class DetailFragment : Fragment() {
         binding.btnAdd.setOnClickListener {
             findNavController()
                 .navigate(DetailFragmentDirections.actionDetailFragmentToListFragment())
+            addNewItem()
+
+
         }
 
 
 
             return binding.root
     }
+    private fun addNewItem(){
+        viewModel.saveNewItem(
+            binding.tvName.toString(),
+            binding.tvSize.toString(),
+            binding.tvCompany.toString(),
+            binding.tvDescription.toString()
+        )
+    }
+    fun addNewItemLayout(view: FragmentListBinding, binding: FragmentDetailBinding) {
+        shoeItem = binding.shoeItemsList
+        view.shoeList.addView(shoeItem)
+    }
+
+
 
 }

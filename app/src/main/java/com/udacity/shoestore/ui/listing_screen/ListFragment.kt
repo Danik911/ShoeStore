@@ -47,6 +47,20 @@ class ListFragment : Fragment() {
         return binding.root
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_list_fragment, menu)
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.mi_logout ->
+                findNavController().navigate(ListFragmentDirections.actionListFragmentToLoginFragment())
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun addShoe(shoeName: String) {
         val view = layoutInflater.inflate(R.layout.list_item, null)
         view.tv_item_name.text = shoeName

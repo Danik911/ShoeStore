@@ -1,7 +1,5 @@
 package com.udacity.shoestore.ui
 
-import android.widget.EditText
-import androidx.databinding.InverseMethod
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,29 +11,52 @@ class ActivityViewModel : ViewModel() {
     val shoeList: LiveData<MutableList<Shoe>>
         get() = _shoeList
 
-    private val _shoeItem = MutableLiveData<Shoe>()
-    val shoeItem: LiveData<Shoe>
-        get() = _shoeItem
-
-    private val _shoeName = MutableLiveData<String>()
-    val shoeName: LiveData<String>
-        get() = _shoeName
+    var newShoeName = ""
+    var newShoeSize = ""
+    var newCompanyName = ""
+    var newShoeDescription = ""
 
     init {
-        _shoeName.value = "Nike"
-        _shoeItem.value = Shoe("", "0.0", "", "")
         _shoeList.value = mutableListOf()
     }
 
-    fun saveNewItem(name: String, size: String, company: String, description: String) {
-        val newItem = Shoe(
-            name,
-            size,
-            company,
-            description
-        )
-        _shoeItem.value = newItem
-        newItem.let { shoeList.value?.add(it) }
+    fun resetShoeItem(){
+        newShoeName = ""
+        newShoeSize = ""
+        newCompanyName = ""
+        newShoeDescription = ""
     }
+    fun addNewShoe(): Boolean {
+
+        if (!isValidData()) return false
+
+        addShoe(
+            newShoeName,
+            newShoeSize.toDouble(),
+            newCompanyName,
+            newShoeDescription
+        )
+
+        return true
+    }
+
+
+    private fun addShoe(name: String, size: Double, company: String, description: String) {
+        val shoe = Shoe(name, size, company, description)
+        _shoeList.value!!.add(shoe)
+    }
+
+    private fun isValidData(): Boolean {
+
+        if (newShoeName.isBlank() ||
+            newCompanyName.isBlank() ||
+            newShoeSize.isBlank()  ||
+            newShoeDescription.isBlank()) {
+            return false
+        }
+
+        return true
+    }
+
 
 }

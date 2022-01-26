@@ -3,38 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
+    <!-- constraint layout is used to extended in the future -->
     <androidx.constraintlayout.widget.ConstraintLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
 
 
+        <!-- scroll view is here to support scrolling -->
         <ScrollView
             android:id="@+id/scroll_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:contentDescription="list_of_items"
+            android:contentDescription="@string/list_of_items"
             android:layout_marginTop="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
+            <!-- linear layout is here to arrange items as a vertical list and to allow adding items -->
             <LinearLayout
                 android:id="@+id/shoe_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
-
-
-
             </LinearLayout>
-
-
         </ScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

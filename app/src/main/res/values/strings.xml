@@ -23,4 +23,5 @@
     <string name="shoe_description">Comfortable snickers which protect your feet and provide perfect grip on any surface</string>
     <string name="insert_a_shoe_name">insert a shoe name</string>
     <string name="logout">Logout</string>
+    <string name="list_of_items">list_of_items</string>
 </resources>

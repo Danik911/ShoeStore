@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
+    <!--Constrain layout here to keep UI as flat as possible
+         and at the same time to arrange elements inside-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/login_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         tools:context=".ui.login_screen.LoginFragment">
-
-        <!-- TODO: Update blank fragment layout -->
 
 
         <Button

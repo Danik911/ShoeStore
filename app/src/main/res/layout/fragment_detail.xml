@@ -10,12 +10,14 @@
             type="com.udacity.shoestore.ui.ActivityViewModel" />
     </data>
 
+    <!--Constrain layout here to keep UI as flat as possible
+    and at the same time to arrange elements inside-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-
-        <LinearLayout
+<!--Scroll view is used to allow adding new rows and scroll existing -->
+        <ScrollView
             android:id="@+id/shoe_items_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,27 +25,28 @@
             android:paddingStart="8dp"
             android:paddingTop="24dp"
             android:paddingEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.36">
 
+            <!--Linear layout arranges view elements vertically-->
             <LinearLayout
                 android:id="@+id/nameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-
                 <TextView
                     style="@style/my_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="Name" />
 
                 <EditText
@@ -51,33 +54,16 @@
                     style="@style/my_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:hint="@string/insert_a_shoe_name"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:text="@={activityViewModel.newShoeName}"
                     android:textAlignment="textStart" />
 
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/sizeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-
                 <TextView
                     style="@style/my_style"
-                    android:layout_width="40dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.6"
                     android:text="Size" />
 
                 <EditText
@@ -85,34 +71,17 @@
                     style="@style/my_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:hint="insert size"
-                    android:text="@={activityViewModel.newShoeSize}"
                     android:imeOptions="actionNext"
                     android:inputType="number"
                     android:singleLine="true"
+                    android:text="@={activityViewModel.newShoeSize}"
                     android:textAlignment="textStart" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/companyLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
 
                 <TextView
                     style="@style/my_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
                     android:text="Company" />
 
                 <EditText
@@ -120,27 +89,11 @@
                     style="@style/my_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:hint="insert company"
-                    android:text="@={activityViewModel.newCompanyName}"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
+                    android:text="@={activityViewModel.newCompanyName}"
                     android:textAlignment="textStart" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/descriptionLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
 
                 <TextView
                     style="@style/my_style"
@@ -153,39 +106,40 @@
                     style="@style/my_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:hint="write description"
-                    android:text="@={activityViewModel.newShoeDescription}"
                     android:imeOptions="actionDone"
                     android:singleLine="true"
+                    android:text="@={activityViewModel.newShoeDescription}"
                     android:textAlignment="textStart" />
-
-
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        </ScrollView>
 
-                <Button
-                    android:id="@+id/btn_add"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="add" />
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_add"
+            app:layout_constraintTop_toBottomOf="@+id/shoe_items_list" />
 
-                <Button
-                    android:id="@+id/btn_cancel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="cancel" />
-            </LinearLayout>
-
-
-        </LinearLayout>
-
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shoe_items_list" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
